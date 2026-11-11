@@ -386,8 +386,13 @@ h1 {
   position: absolute;
   top: 6px;
   left: 50%;
-  width: min(260px, 68%);
+  display: block;
+  width: min(320px, 84%);
   height: auto;
+  aspect-ratio: 360 / 320;
+  border: 0;
+  outline: none;
+  pointer-events: none;
   filter: drop-shadow(0 34px 34px rgba(0, 0, 0, 0.45));
   transform: translateX(-50%);
   animation: float 5.5s ease-in-out infinite;
@@ -802,7 +807,7 @@ button:focus-visible {
   }
 
   .block {
-    width: min(215px, 62%);
+    width: min(270px, 84%);
   }
 
   .console pre {
