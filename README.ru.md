@@ -7,6 +7,10 @@
 >
 > Это полностью «вайб-кодинг» и неофициальная реализация WorldHub для macOS. Предоставляется как есть, сделана как proof-of-concept (а также чтобы помочь некоторым людям поиграть).
 
+<p align="center">
+  <img src="docs/hero-logo.png" width="360" alt="WorldsHub для macOS — глянцевый логотип-блок травы с кабелями и искрами">
+</p>
+
 [![Download 0.9.0](https://img.shields.io/badge/Download-0.9.0-blue?style=for-the-badge)](https://github.com/vladyio/worldshub-macos/releases/latest/download/WorldsHub-macOS-arm64.zip)
 
 Тонкая Electron-обёртка вокруг официального веб-клиента WorldsHub, у которой Windows-зависимые части пересобраны для macOS. Позволяет **подключаться и хостить** миры Minecraft. Транспорт — WebRTC, проброс портов не нужен.

@@ -5,6 +5,10 @@
 > [!NOTE]
 > This is a completely vibe-coded and unofficial implementation of WorldHub for macOS. It is provided as is and has been done as a proof-of-concept (and also to help some people play).
 
+<p align="center">
+  <img src="docs/hero-logo.png" width="360" alt="WorldsHub for macOS — glossy grass block logo with cables and sparks">
+</p>
+
 [![Download 0.9.0](https://img.shields.io/badge/Download-0.9.0-blue?style=for-the-badge)](https://github.com/vladyio/worldshub-macos/releases/latest/download/WorldsHub-macOS-arm64.zip)
 
 A thin Electron wrapper around the official WorldsHub web client, with the Windows-only parts rebuilt for macOS. It lets you **join and host** Minecraft worlds. The P2P transport is WebRTC; no port forwarding is required.
