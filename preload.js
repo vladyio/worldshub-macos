@@ -1,7 +1,7 @@
 const { contextBridge, ipcRenderer } = require('electron');
 
 // Читаем версию из package.json
-let appVersion = '0.8.5';
+let appVersion = 'unknown';
 try {
   // Используем относительный путь вместо path.join
   const packagePath = __dirname + '/package.json';
@@ -18,7 +18,6 @@ console.log(`📦 App Version: ${appVersion}`);
 console.log(`🔧 Environment: ${process.env.NODE_ENV || 'development'}`);
 
 contextBridge.exposeInMainWorld('electron', {
-    appVersion,
     // Для внутренних P2P операций (client.js, host.js)
     sendToProcess: (action, data) => {
         // console.log('[preload] sendToProcess called:', action, data);

@@ -1,0 +1,149 @@
+name: Sync upstream and release
+
+on:
+  schedule:
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+    inputs:
+      force:
+        description: Rebuild and replace the release even if the version is unchanged
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-upstream
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: macos-15
+    env:
+      FEED: https://d1jl7r3beoolrj.cloudfront.net/worldshub-app
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Check upstream version
+        id: check
+        run: |
+          set -euo pipefail
+          curl -fsSL -H 'Cache-Control: no-cache' "$FEED/latest.yml?ts=$(date +%s)" -o latest.yml
+          version="$(awk '/^version:/{print $2; exit}' latest.yml | tr -d "'\"")"
+          current="$(node -p "require('./package.json').version")"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          if [ "$version" = "$current" ] && [ "${{ github.event.inputs.force }}" != "true" ]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "Up to date at $version"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "Updating $current -> $version"
+          fi
+
+      - name: Install 7-Zip
+        if: steps.check.outputs.changed == 'true'
+        run: brew install sevenzip
+
+      - name: Download and extract upstream
+        if: steps.check.outputs.changed == 'true'
+        run: |
+          set -euo pipefail
+          file="$(awk '/^path:/{sub(/^path: /,""); print; exit}' latest.yml | tr -d "'\"")"
+          expected="$(awk '/^sha512:/{print $2; exit}' latest.yml)"
+          encoded="$(node -e 'console.log(encodeURI(process.argv[1]))' "$file")"
+
+          curl -fL --retry 3 -o upstream-setup.exe "$FEED/$encoded"
+          actual="$(openssl dgst -sha512 -binary upstream-setup.exe | openssl base64 -A)"
+          [ "$actual" = "$expected" ] || { echo "SHA-512 mismatch"; exit 1; }
+
+          mkdir -p .upstream/installer
+          7zz x -y upstream-setup.exe -o.upstream/installer
+          7zz x -y '.upstream/installer/$PLUGINSDIR/app-64.7z' -o.upstream/app
+          npx --yes @electron/asar extract .upstream/app/resources/app.asar .upstream/appcode
+
+      - name: Update client source
+        if: steps.check.outputs.changed == 'true'
+        run: |
+          set -euo pipefail
+          cp .upstream/appcode/client.js \
+             .upstream/appcode/config.js \
+             .upstream/appcode/minecraft-datachannel-parser.js \
+             .upstream/appcode/preload.js .
+          cp .upstream/appcode/main-process/utils/turn-servers.js main-process/utils/
+
+          git apply --check patches/client-registration-failed.patch
+          git apply patches/client-registration-failed.patch
+
+          npm version "${{ steps.check.outputs.version }}" \
+            --no-git-tag-version --allow-same-version --force
+
+      - name: Install dependencies
+        if: steps.check.outputs.changed == 'true'
+        run: npm ci
+
+      - name: Smoke test
+        if: steps.check.outputs.changed == 'true'
+        run: |
+          node -e "require('./client'); console.log('client load ok')"
+          npm run test:rtc
+
+      - name: Build, sign and archive
+        if: steps.check.outputs.changed == 'true'
+        run: |
+          set -euo pipefail
+          npm run build
+          codesign --force --deep --sign - dist/mac-arm64/WorldsHub.app
+          rm -f WorldsHub-macOS-arm64.zip
+          ditto -c -k --sequesterRsrc --keepParent dist/mac-arm64/WorldsHub.app WorldsHub-macOS-arm64.zip
+
+      - name: Commit updated source
+        if: steps.check.outputs.changed == 'true'
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add client.js config.js minecraft-datachannel-parser.js preload.js \
+            main-process/utils/turn-servers.js package.json package-lock.json
+          if git diff --cached --quiet; then
+            echo "No source changes to commit"
+          else
+            git commit -m "Sync upstream WorldsHub ${{ steps.check.outputs.version }}"
+            git push
+          fi
+
+      - name: Publish release
+        if: steps.check.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          version="${{ steps.check.outputs.version }}"
+          tag="v$version"
+          cat > release-notes.md <<EOF
+          Unofficial WorldsHub client for macOS (Apple Silicon, arm64). Join-only.
+
+          **Install**
+          1. Download \`WorldsHub-macOS-arm64.zip\`, unzip, drag \`WorldsHub.app\` into \`/Applications\`.
+          2. First launch: right-click the app → **Open** (ad-hoc signed, not notarized).
+          3. Log in, pick a world, then connect to \`localhost:25565\` in Minecraft Java Edition.
+
+          [README](https://github.com/vladyio/worldshub-macos#readme) · [Русский](https://github.com/vladyio/worldshub-macos/blob/main/README.ru.md)
+          EOF
+          sed -i '' 's/^ *//' release-notes.md
+
+          if gh release view "$tag" >/dev/null 2>&1; then
+            gh release delete "$tag" --yes --cleanup-tag
+          fi
+
+          gh release create "$tag" WorldsHub-macOS-arm64.zip \
+            --title "WorldsHub for macOS $version (Apple Silicon)" \
+            --target "$(git rev-parse HEAD)" \
+            --notes-file release-notes.md

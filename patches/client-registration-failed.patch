@@ -1,0 +1,18 @@
+--- a/client.js
++++ b/client.js
+@@ -1302,6 +1302,15 @@
+         setStatus('Server connection error.');
+     });
+ 
++    socket.on('registration_failed', (data) => {
++        const reason = data.reason || 'Invalid or expired authorization token';
++        log(`Registration failed: ${reason}`);
++        setStatus(`Registration failed: ${reason}`);
++        if (callbacks && callbacks.onShowToast) {
++            callbacks.onShowToast('error', 'Connection failed', reason);
++        }
++    });
++
+     socket.on('client_unauthorized', (data) => {
+         log(`Client unauthorized: ${data.reason || 'Invalid or missing authorization token'}`);
+         setStatus(`Unauthorized: ${data.reason || 'Invalid or missing authorization token'}`);
