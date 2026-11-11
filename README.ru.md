@@ -68,6 +68,12 @@ codesign --force --deep --sign - dist/mac-arm64/WorldsHub.app
 
 Если npm блокирует install-скрипты: `npm install-scripts approve electron node-datachannel && npm rebuild`.
 
+### Автоматические обновления
+
+[Workflow синхронизации](.github/workflows/sync-upstream.yml) ежедневно проверяет официальный `latest.yml`. Когда версия upstream меняется, он скачивает и проверяет новый установщик, извлекает код клиента, заново применяет патчи из `patches/`, собирает и подписывает приложение и публикует новый релиз.
+
+Если upstream изменит код в месте патча, workflow упадёт до публикации — обновите патч и запустите снова. Ручной запуск: `gh workflow run sync-upstream.yml -f force=true`.
+
 ## Лицензия
 
 Общественное достояние — см. [LICENSE](LICENSE).
