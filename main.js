@@ -1,25 +1,13 @@
-const { app, BrowserWindow, ipcMain, shell, session } = require('electron');
+const { app, BrowserWindow, shell, session } = require('electron');
 const path = require('node:path');
+const host = require('./host');
 const client = require('./client');
-const { version } = require('./package.json');
+const { registerIpcHandlers } = require('./main-process/ipc-handlers');
+const appState = require('./main-process/state');
+const MinecraftServerRunner = require('./main-process/utils/minecraft-server-runner');
 
 let mainWindow = null;
-
-function send(type, data) {
-  if (mainWindow && !mainWindow.isDestroyed()) {
-    mainWindow.webContents.send('ui-event', { type, data });
-  }
-}
-
-function clientCallbacks() {
-  return {
-    onLog: (message) => send('log', message),
-    onStatusUpdate: (status, message) => send('status-update', { status, message: message || status }),
-    onSignalingStatusUpdate: (status) => send(status, null),
-    onClientListUpdate: (clients, hostId) => send('client-list-update', { clients, hostId }),
-    onShowToast: (severity, summary, detail) => send('show-toast', { severity, summary, detail })
-  };
-}
+let isQuitting = false;
 
 function createWindow() {
   mainWindow = new BrowserWindow({
@@ -50,6 +38,37 @@ function createWindow() {
   mainWindow.on('closed', () => {
     mainWindow = null;
   });
+
+  return mainWindow;
+}
+
+function stopMinecraftServer() {
+  try {
+    if (MinecraftServerRunner.isServerRunning()) {
+      console.log('[main] Stopping Minecraft server...');
+      MinecraftServerRunner.killMinecraftServerProcess();
+    }
+  } catch (error) {
+    console.error('[main] Error stopping Minecraft server:', error);
+  }
+}
+
+function shutdownModules(preserveConnecting = false) {
+  console.log(`[main] shutdownModules: hosting=${appState.isHosting}, connecting=${appState.isConnecting}`);
+
+  if (!appState.isHosting) {
+    stopMinecraftServer();
+  }
+
+  if (appState.isHosting) {
+    host.stopHosting();
+    appState.isHosting = false;
+  }
+
+  if (appState.isConnecting && !preserveConnecting) {
+    client.disconnect();
+    appState.isConnecting = false;
+  }
 }
 
 app.whenReady().then(() => {
@@ -58,67 +77,45 @@ app.whenReady().then(() => {
     app.userAgentFallback.replace(/\s?(WorldsHub|Electron)\/\S+/g, '')
   );
 
-  ipcMain.on('process-action', async (_event, payload) => {
-    const { action, data } = payload || {};
-    try {
-      switch (action) {
-        case 'connect-to-host':
-          client.connectToHost(data.serverId, data.token, clientCallbacks(), data.password, data.inviteCode);
-          break;
-        case 'disconnect-from-host':
-          await client.disconnect();
-          break;
-        case 'start-hosting':
-        case 'stop-hosting':
-        case 'kick-client':
-          send('show-toast', {
-            severity: 'warn',
-            summary: 'Not supported',
-            detail: 'This macOS build can join worlds, but cannot host them.'
-          });
-          break;
-        default:
-          // host-client-list-update and misc host chatter
-          break;
-      }
-    } catch (error) {
-      console.error('[main] process-action failed:', error);
-      send('show-toast', {
-        severity: 'error',
-        summary: 'Error',
-        detail: error.message
-      });
-    }
+  const window = createWindow();
+
+  registerIpcHandlers({
+    mainWindow: window,
+    host,
+    client,
+    shutdownModules,
+    setupUpdates: null
   });
-
-  ipcMain.handle('get-app-version', () => ({ success: true, version }));
-
-  const unsupported = [
-    'get-installed-jdks', 'get-system-java', 'get-recommended-jdk', 'download-jdk21',
-    'get-local-jdks', 'get-java-version', 'start-minecraft-server', 'stop-minecraft-server',
-    'get-minecraft-server-status', 'get-active-minecraft-servers', 'send-minecraft-command',
-    'get-server-properties', 'set-server-property', 'check-viaversion', 'getOpsJson',
-    'minecraft-create-eula', 'minecraft-delete-folder', 'minecraft-install-server',
-    'minecraft-open-folder', 'minecraft-select-folder'
-  ];
-  for (const channel of unsupported) {
-    ipcMain.handle(channel, () => ({
-      success: false,
-      error: 'Hosting is not supported by this macOS build.'
-    }));
-  }
-
-  createWindow();
-
-  app.on('activate', () => {
-    if (!mainWindow) createWindow();
-  });
-});
-
-app.on('before-quit', () => {
-  client.disconnect().catch(() => {});
 });
 
 app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') app.quit();
+  app.quit();
+});
+
+app.on('before-quit', (event) => {
+  if (isQuitting) return;
+
+  shutdownModules();
+  stopMinecraftServer();
+
+  if (MinecraftServerRunner.isServerRunning()) {
+    event.preventDefault();
+    console.log('[main] Waiting for Minecraft server to stop...');
+
+    const startedAt = Date.now();
+    const timer = setInterval(() => {
+      const stillRunning = MinecraftServerRunner.isServerRunning();
+      if (!stillRunning || Date.now() - startedAt > 10000) {
+        clearInterval(timer);
+        isQuitting = true;
+        app.quit();
+      }
+    }, 500);
+  }
+});
+
+process.on('SIGINT', () => {
+  MinecraftServerRunner.killMinecraftServerProcess();
+  host.stopHosting();
+  app.exit(0);
 });

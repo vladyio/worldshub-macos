@@ -37,15 +37,15 @@ jobs:
         run: |
           set -euo pipefail
           curl -fsSL -H 'Cache-Control: no-cache' "$FEED/latest.yml?ts=$(date +%s)" -o latest.yml
-          version="$(awk '/^version:/{print $2; exit}' latest.yml | tr -d "'\"")"
-          current="$(node -p "require('./package.json').version")"
-          echo "version=$version" >> "$GITHUB_OUTPUT"
-          if [ "$version" = "$current" ] && [ "${{ github.event.inputs.force }}" != "true" ]; then
+          upstream="$(awk '/^version:/{print $2; exit}' latest.yml | tr -d "'\"")"
+          current="$(node -p "require('./package.json').upstreamVersion || require('./package.json').version")"
+          echo "upstream=$upstream" >> "$GITHUB_OUTPUT"
+          if [ "$upstream" = "$current" ] && [ "${{ github.event.inputs.force }}" != "true" ]; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
-            echo "Up to date at $version"
+            echo "Up to date at upstream $upstream"
           else
             echo "changed=true" >> "$GITHUB_OUTPUT"
-            echo "Updating $current -> $version"
+            echo "Updating upstream $current -> $upstream"
           fi
 
       - name: Install 7-Zip
@@ -70,24 +70,45 @@ jobs:
           npx --yes @electron/asar extract .upstream/app/resources/app.asar .upstream/appcode
 
       - name: Update client source
+        id: update
         if: steps.check.outputs.changed == 'true'
         run: |
           set -euo pipefail
+          upstream="${{ steps.check.outputs.upstream }}"
+          current="$(node -p "require('./package.json').upstreamVersion || require('./package.json').version")"
+
           cp .upstream/appcode/client.js \
              .upstream/appcode/config.js \
+             .upstream/appcode/host.js \
              .upstream/appcode/minecraft-datachannel-parser.js \
+             .upstream/appcode/minecraft-server-manager.js \
              .upstream/appcode/preload.js .
           cp .upstream/appcode/main-process/utils/turn-servers.js main-process/utils/
 
-          git apply --check patches/client-registration-failed.patch
-          git apply patches/client-registration-failed.patch
+          for patch in patches/client-registration-failed.patch patches/host-insecure-tls.patch; do
+            git apply --check "$patch"
+            git apply "$patch"
+          done
 
-          npm version "${{ steps.check.outputs.version }}" \
-            --no-git-tag-version --allow-same-version --force
+          if [ "$upstream" != "$current" ]; then
+            npm pkg set "upstreamVersion=$upstream"
+            npm version patch --no-git-tag-version --force
+          fi
+
+          app_version="$(node -p "require('./package.json').version")"
+          echo "app_version=$app_version" >> "$GITHUB_OUTPUT"
+          echo "App version: $app_version (upstream $upstream)"
 
           sed -i '' -E \
-            "s|Download [0-9][0-9A-Za-z.-]*|Download ${{ steps.check.outputs.version }}|g; s|Download-[0-9][0-9A-Za-z.]*|Download-${{ steps.check.outputs.version }}|g" \
+            "s|Download [0-9][0-9A-Za-z.-]*|Download $app_version|g; s|Download-[0-9][0-9A-Za-z.]*|Download-$app_version|g" \
             README.md README.ru.md
+
+      - name: Set up Java 17
+        if: steps.check.outputs.changed == 'true'
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
 
       - name: Install dependencies
         if: steps.check.outputs.changed == 'true'
@@ -96,8 +117,8 @@ jobs:
       - name: Smoke test
         if: steps.check.outputs.changed == 'true'
         run: |
-          node -e "require('./client'); console.log('client load ok')"
-          npm run test:rtc
+          node -e "require('./client'); require('./host'); console.log('modules load ok')"
+          npm test
 
       - name: Build, sign and archive
         if: steps.check.outputs.changed == 'true'
@@ -114,13 +135,14 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add client.js config.js minecraft-datachannel-parser.js preload.js \
+          git add client.js config.js host.js minecraft-datachannel-parser.js \
+            minecraft-server-manager.js preload.js \
             main-process/utils/turn-servers.js package.json package-lock.json \
             README.md README.ru.md
           if git diff --cached --quiet; then
             echo "No source changes to commit"
           else
-            git commit -m "Sync upstream WorldsHub ${{ steps.check.outputs.version }}"
+            git commit -m "Sync upstream WorldsHub ${{ steps.check.outputs.upstream }} (app ${{ steps.update.outputs.app_version }})"
             git push
           fi
 
@@ -130,15 +152,16 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -euo pipefail
-          version="${{ steps.check.outputs.version }}"
+          version="${{ steps.update.outputs.app_version }}"
           tag="v$version"
           cat > release-notes.md <<EOF
-          Unofficial WorldsHub client for macOS (Apple Silicon, arm64). Join-only.
+          Unofficial WorldsHub client for macOS (Apple Silicon, arm64). Host and join Minecraft worlds.
 
           **Install**
           1. Download \`WorldsHub-macOS-arm64.zip\`, unzip, drag \`WorldsHub.app\` into \`/Applications\`.
           2. First launch: right-click the app → **Open** (ad-hoc signed, not notarized).
-          3. Log in, pick a world, then connect to \`localhost:25565\` in Minecraft Java Edition.
+          3. To join: log in, pick a world, then connect to \`localhost:25565\` in Minecraft Java Edition.
+          4. To host: install/start a Minecraft server from the app, then press Host.
 
           [README](https://github.com/vladyio/worldshub-macos#readme) · [Русский](https://github.com/vladyio/worldshub-macos/blob/main/README.ru.md)
           EOF

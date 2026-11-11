@@ -1,0 +1,23 @@
+--- a/host.js
++++ b/host.js
+@@ -195,13 +195,18 @@
+         return;
+     }
+ 
+-    socket = io(`https://${config.serverAddress}`, {
++    const socketOptions = {
+         transports: ['websocket', 'polling'],
+         reconnection: true,
+         reconnectionDelay: 1000,
+         reconnectionDelayMax: 10000,
+         reconnectionAttempts: 30
+-    });
++    };
++    if (process.env.WORLDSHUB_INSECURE_TLS === '1') {
++        socketOptions.rejectUnauthorized = false;
++    }
++
++    socket = io(`https://${config.serverAddress}`, socketOptions);
+ 
+     socket.on('connect', () => {
+         registerHostWithSignaling(false);

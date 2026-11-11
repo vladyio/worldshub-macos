@@ -1,23 +1,31 @@
 {
   "name": "worldshub-mac",
-  "version": "0.8.5",
-  "description": "WorldsHub client for macOS (join only)",
+  "version": "0.9.0",
+  "upstreamVersion": "0.8.5",
+  "description": "WorldsHub client for macOS (host and join)",
   "main": "main.js",
   "author": "local build",
   "license": "UNLICENSED",
   "scripts": {
     "start": "electron .",
     "test:rtc": "node test/rtc-smoke.js",
+    "test:jdk": "node test/jdk-smoke.js",
+    "test:runner": "node test/server-runner-smoke.js",
+    "test": "npm run test:rtc && npm run test:jdk && npm run test:runner",
     "build": "electron-builder --mac dir"
   },
   "dependencies": {
+    "ansi-to-html": "^0.7.2",
     "axios": "^1.10.0",
+    "escape-html": "^1.0.3",
+    "minecraft-server-util": "^5.4.4",
     "node-datachannel": "0.28.0",
     "socket.io-client": "^4.8.1"
   },
   "devDependencies": {
     "electron": "^33.4.11",
-    "electron-builder": "^25.1.8"
+    "electron-builder": "^25.1.8",
+    "socket.io": "^4.8.4"
   },
   "build": {
     "appId": "io.worldshub.mac",
@@ -29,8 +37,10 @@
       "main.js",
       "preload.js",
       "client.js",
+      "host.js",
       "config.js",
       "minecraft-datachannel-parser.js",
+      "minecraft-server-manager.js",
       "main-process/**/*",
       "package.json"
     ],
@@ -49,6 +59,7 @@
     }
   },
   "allowScripts": {
-    "electron@33.4.11": true
+    "electron@33.4.11": true,
+    "node-datachannel@0.28.0": true
   }
 }
