@@ -1,5 +1,6 @@
 node_modules/
 dist/
+*.zip
 *.log
 *.pid
 .DS_Store
