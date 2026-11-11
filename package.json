@@ -1,0 +1,53 @@
+{
+  "name": "worldshub-mac",
+  "version": "0.8.5",
+  "description": "WorldsHub client for macOS (join only)",
+  "main": "main.js",
+  "author": "local build",
+  "license": "UNLICENSED",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --mac dir"
+  },
+  "dependencies": {
+    "axios": "^1.10.0",
+    "node-datachannel": "0.28.0",
+    "socket.io-client": "^4.8.1"
+  },
+  "devDependencies": {
+    "electron": "^33.4.11",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "io.worldshub.mac",
+    "productName": "WorldsHub",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "client.js",
+      "config.js",
+      "minecraft-datachannel-parser.js",
+      "main-process/**/*",
+      "package.json"
+    ],
+    "asarUnpack": [
+      "node_modules/node-datachannel/**/*"
+    ],
+    "mac": {
+      "category": "public.app-category.games",
+      "identity": null,
+      "extendInfo": {
+        "NSLocalNetworkUsageDescription": "WorldsHub connects directly to other players' worlds on your local network."
+      },
+      "target": [
+        "dir"
+      ]
+    }
+  },
+  "allowScripts": {
+    "electron@33.4.11": true
+  }
+}
