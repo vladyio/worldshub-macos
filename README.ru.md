@@ -3,8 +3,6 @@
 [English](README.md) · **Русский**
 
 > [!NOTE]
-> This is a completely vibe-coded and unofficial implementation of WorldHub for macOS. It is provided as is and has been done as a proof-of-concept (and also to help some people play).
->
 > Это полностью «вайб-кодинг» и неофициальная реализация WorldHub для macOS. Предоставляется как есть, сделана как proof-of-concept (а также чтобы помочь некоторым людям поиграть).
 
 Тонкая Electron-обёртка вокруг официального веб-клиента WorldsHub, у которой Windows-зависимая P2P-часть пересобрана для macOS. Позволяет **подключаться** к мирам Minecraft, которые хостят игроки с официальным Windows-клиентом. Создание миров не поддерживается.
