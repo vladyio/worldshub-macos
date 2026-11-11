@@ -163,7 +163,7 @@ jobs:
           3. To join: log in, pick a world, then connect to \`localhost:25565\` in Minecraft Java Edition.
           4. To host: install/start a Minecraft server from the app, then press Host.
 
-          [README](https://github.com/vladyio/worldshub-macos#readme) · [Русский](https://github.com/vladyio/worldshub-macos/blob/main/README.ru.md)
+          [Website](https://vladyio.github.io/worldshub-macos/) · [README](https://github.com/vladyio/worldshub-macos#readme) · [Русский](https://github.com/vladyio/worldshub-macos/blob/main/README.ru.md)
           EOF
           sed -i '' 's/^ *//' release-notes.md
 
