@@ -1,6 +1,6 @@
 # WorldsHub для macOS
 
-[English](README.md) · **Русский**
+[English](README.md) · **Русский** · [Сайт](https://vladyio.github.io/worldshub-macos/)
 
 > [!NOTE]
 > This is a completely vibe-coded and unofficial implementation of WorldHub for macOS. It is provided as is and has been done as a proof-of-concept (and also to help some people play).

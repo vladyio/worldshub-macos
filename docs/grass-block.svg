@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Minecraft grass block">
+  <defs>
+    <pattern id="grassTop" width="8" height="8" patternUnits="userSpaceOnUse">
+      <rect width="8" height="8" fill="#5faa2c"/>
+      <rect width="4" height="4" fill="#72c63a"/>
+      <rect x="4" y="4" width="4" height="4" fill="#4b8a20"/>
+      <rect x="6" width="2" height="2" fill="#84dc4c"/>
+      <rect x="2" y="2" width="2" height="2" fill="#68bb34"/>
+      <rect y="6" width="2" height="2" fill="#3f7a1a"/>
+      <rect x="4" y="2" width="2" height="2" fill="#56a027"/>
+    </pattern>
+    <pattern id="grassSide" width="8" height="8" patternUnits="userSpaceOnUse">
+      <rect width="8" height="8" fill="#559e26"/>
+      <rect width="4" height="4" fill="#67b833"/>
+      <rect x="4" y="4" width="4" height="4" fill="#43801d"/>
+      <rect x="6" width="2" height="2" fill="#76c941"/>
+      <rect x="2" y="2" width="2" height="2" fill="#5da92d"/>
+    </pattern>
+    <pattern id="grassSideDark" width="8" height="8" patternUnits="userSpaceOnUse">
+      <rect width="8" height="8" fill="#447f1e"/>
+      <rect width="4" height="4" fill="#539b29"/>
+      <rect x="4" y="4" width="4" height="4" fill="#376918"/>
+      <rect x="6" width="2" height="2" fill="#5fac2f"/>
+      <rect x="2" y="2" width="2" height="2" fill="#4c8c24"/>
+    </pattern>
+    <pattern id="dirt" width="8" height="8" patternUnits="userSpaceOnUse">
+      <rect width="8" height="8" fill="#8b5a2b"/>
+      <rect width="4" height="4" fill="#9c6733"/>
+      <rect x="4" y="4" width="4" height="4" fill="#74481f"/>
+      <rect x="6" width="2" height="2" fill="#a9743c"/>
+      <rect x="2" y="2" width="2" height="2" fill="#875427"/>
+      <rect y="6" width="2" height="2" fill="#633c18"/>
+      <rect x="4" y="2" width="2" height="2" fill="#7e4d22"/>
+    </pattern>
+    <pattern id="dirtDark" width="8" height="8" patternUnits="userSpaceOnUse">
+      <rect width="8" height="8" fill="#70461f"/>
+      <rect width="4" height="4" fill="#7f5127"/>
+      <rect x="4" y="4" width="4" height="4" fill="#5d3918"/>
+      <rect x="6" width="2" height="2" fill="#8b5a2b"/>
+      <rect x="2" y="2" width="2" height="2" fill="#6a421e"/>
+    </pattern>
+  </defs>
+
+  <!-- top -->
+  <polygon points="64,8 116,34 64,60 12,34" fill="url(#grassTop)"/>
+  <!-- left grass strip -->
+  <polygon points="12,34 64,60 64,72 12,46" fill="url(#grassSide)"/>
+  <!-- left dirt -->
+  <polygon points="12,46 64,72 64,116 12,90" fill="url(#dirt)"/>
+  <!-- right grass strip -->
+  <polygon points="116,34 64,60 64,72 116,46" fill="url(#grassSideDark)"/>
+  <!-- right dirt -->
+  <polygon points="116,46 64,72 64,116 116,90" fill="url(#dirtDark)"/>
+
+  <!-- blocky highlights -->
+  <polyline points="12,34 64,8 116,34" fill="none" stroke="#9ee85e" stroke-width="2" opacity="0.55"/>
+  <polyline points="12,34 12,90 64,116" fill="none" stroke="#f0c08a" stroke-width="1.5" opacity="0.18"/>
+
+  <!-- outline -->
+  <polygon points="64,8 116,34 116,90 64,116 12,90 12,34" fill="none" stroke="#1b120b" stroke-width="2.5" stroke-linejoin="round"/>
+</svg>

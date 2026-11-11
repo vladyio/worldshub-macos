@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WorldsHub for macOS — Unofficial Minecraft client</title>
+  <meta name="description" content="A free, unofficial macOS client for WorldsHub. Join and host peer-to-peer Minecraft worlds from your Mac. No port forwarding, no Windows required.">
+  <meta name="theme-color" content="#0d100c">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-glow" aria-hidden="true"></div>
+
+  <header class="nav container">
+    <a class="brand" href="#top" aria-label="WorldsHub macOS home">
+      <img src="grass-block.svg" alt="" width="28" height="28">
+      <span class="brand-name">WorldsHub</span>
+      <span class="brand-tag">macOS</span>
+    </a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="#features">Features</a>
+      <a href="#install">Install</a>
+      <a href="https://github.com/vladyio/worldshub-macos" rel="noopener">GitHub</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero container">
+      <div class="hero-copy">
+        <div class="pill"><span class="pill-dot"></span> Unofficial · fan-made · open source</div>
+        <h1>
+          Play Minecraft<br>
+          <span class="grad">with friends.</span><br>
+          From your Mac.
+        </h1>
+        <p class="lead">
+          A free, unofficial macOS client for WorldsHub. Join and host peer-to-peer
+          Minecraft worlds without port forwarding — no Windows required.
+        </p>
+        <div class="actions">
+          <a class="btn btn-download" href="https://github.com/vladyio/worldshub-macos/releases/latest/download/WorldsHub-macOS-arm64.zip">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 3a1 1 0 0 1 1 1v9.6l3.3-3.3a1 1 0 1 1 1.4 1.4l-5 5a1 1 0 0 1-1.4 0l-5-5a1 1 0 1 1 1.4-1.4l3.3 3.3V4a1 1 0 0 1 1-1Zm-7 15a1 1 0 0 1 1 1v1h12v-1a1 1 0 1 1 2 0v2a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1Z"/></svg>
+            <span>Download for macOS<small>Apple Silicon · <span data-release>latest release</span></small></span>
+          </a>
+          <a class="btn btn-ghost" href="https://github.com/vladyio/worldshub-macos" rel="noopener">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 .7a11.3 11.3 0 0 0-3.6 22c.6.1.8-.2.8-.6v-2c-3.3.7-4-1.4-4-1.4-.5-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.8 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 2.8 18.3 3 18.3 3c.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.5-5.5 5.8.4.4.8 1.1.8 2.2v3.2c0 .4.2.7.8.6A11.3 11.3 0 0 0 12 .7Z"/></svg>
+            <span>View source</span>
+          </a>
+        </div>
+        <ul class="meta" aria-label="Requirements">
+          <li>macOS 13+</li>
+          <li>Apple Silicon</li>
+          <li>Free &amp; open source</li>
+        </ul>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <div class="orb"></div>
+        <img class="block" src="grass-block.svg" alt="" width="240" height="240">
+        <div class="console">
+          <div class="console-bar">
+            <span class="dot dot-red"></span><span class="dot dot-gold"></span><span class="dot dot-green"></span>
+            <span class="console-title">WorldsHub</span>
+            <img src="grass-block.svg" alt="" width="14" height="14">
+          </div>
+          <pre><span class="dim">$</span> connecting to world...
+<span class="ok">✓</span> peer-to-peer tunnel established
+<span class="ok">✓</span> minecraft server online
+<span class="prompt">→</span> play at <b>localhost:25565</b></pre>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="container section">
+      <p class="eyebrow">What it does</p>
+      <h2>Two ways to play. One little app.</h2>
+      <div class="features">
+        <article class="card">
+          <div class="card-icon icon-grass">
+            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M8 5.5v13l10-6.5-10-6.5Z"/></svg>
+          </div>
+          <h3>Join worlds</h3>
+          <p>Browse WorldsHub worlds, press Connect, and point Minecraft at <code>localhost:25565</code>. That is it.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon icon-gold">
+            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M4 4h16v5H4V4Zm0 6h16v5H4v-5Zm0 6h16v4H4v-4Z"/></svg>
+          </div>
+          <h3>Host worlds</h3>
+          <p>Install a Minecraft server from the app, start it, and press Host. Share an invite code with your friends.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon icon-diamond">
+            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="m13 2-8 12h6l-1 8 9-13h-6l0-7Z"/></svg>
+          </div>
+          <h3>No port forwarding</h3>
+          <p>WebRTC tunnels through NAT automatically. Just allow the macOS local-network prompt and play.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="install" class="container section">
+      <p class="eyebrow">Get started</p>
+      <h2>Three blocks to start.</h2>
+      <ol class="steps">
+        <li>
+          <span class="step-num">1</span>
+          <div>
+            <h3>Download &amp; install</h3>
+            <p>Grab the latest release, unzip it, and drag <code>WorldsHub.app</code> into <code>/Applications</code>.</p>
+          </div>
+        </li>
+        <li>
+          <span class="step-num">2</span>
+          <div>
+            <h3>Log in</h3>
+            <p>Open the app and sign in with your WorldsHub account. First launch may need right-click → Open.</p>
+          </div>
+        </li>
+        <li>
+          <span class="step-num">3</span>
+          <div>
+            <h3>Join or host</h3>
+            <p>Connect to a world, or install Java 17+ and a Minecraft server, then press Host. Play at <code>localhost:25565</code>.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="container cta-wrap">
+      <div class="cta">
+        <div>
+          <p class="eyebrow">Ready?</p>
+          <h2>Grab a grass block. Bring your friends.</h2>
+          <p class="cta-note">Needs an existing WorldsHub account and Minecraft Java Edition.</p>
+        </div>
+        <a class="btn btn-download" href="https://github.com/vladyio/worldshub-macos/releases/latest/download/WorldsHub-macOS-arm64.zip">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 3a1 1 0 0 1 1 1v9.6l3.3-3.3a1 1 0 1 1 1.4 1.4l-5 5a1 1 0 0 1-1.4 0l-5-5a1 1 0 1 1 1.4-1.4l3.3 3.3V4a1 1 0 0 1 1-1Zm-7 15a1 1 0 0 1 1 1v1h12v-1a1 1 0 1 1 2 0v2a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1Z"/></svg>
+          <span>Download for macOS<small>Apple Silicon · <span data-release>latest release</span></small></span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="grass-block.svg" alt="" width="24" height="24">
+        <span>WorldsHub <b>macOS</b></span>
+      </div>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="https://github.com/vladyio/worldshub-macos" rel="noopener">GitHub</a>
+        <a href="https://github.com/vladyio/worldshub-macos/releases" rel="noopener">Releases</a>
+        <a href="https://github.com/vladyio/worldshub-macos#readme" rel="noopener">README</a>
+        <a href="https://github.com/vladyio/worldshub-macos/blob/main/README.ru.md" rel="noopener">Русский</a>
+      </nav>
+    </div>
+    <div class="disclaimer">
+      <span class="warn">UNOFFICIAL</span>
+      <p>
+        This is an unofficial, fan-made project. It is not affiliated with or endorsed by WorldsHub,
+        Mojang, or Microsoft. Minecraft is a trademark of Mojang Synergies AB.
+        Source code is released into the public domain.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // Keep the visible version in sync with the latest GitHub release.
+    const versionEls = document.querySelectorAll('[data-release]');
+    fetch('https://api.github.com/repos/vladyio/worldshub-macos/releases/latest', {
+      headers: { Accept: 'application/vnd.github+json' }
+    })
+      .then((response) => (response.ok ? response.json() : null))
+      .then((release) => {
+        if (!release || !release.tag_name) return;
+        versionEls.forEach((element) => { element.textContent = release.tag_name; });
+      })
+      .catch(() => {});
+  </script>
+</body>
+</html>
