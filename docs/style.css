@@ -148,6 +148,22 @@ code {
   color: var(--text);
 }
 
+.nav-links .lang {
+  padding: 5px 7px;
+  color: var(--diamond);
+  font-family: var(--pixel);
+  font-size: 7px;
+  line-height: 1;
+  background: rgba(74, 237, 217, 0.05);
+  border: 1px solid rgba(74, 237, 217, 0.3);
+  border-radius: 2px;
+}
+
+.nav-links .lang:hover {
+  color: #c8fff9;
+  border-color: rgba(74, 237, 217, 0.65);
+}
+
 /* ---------- hero ---------- */
 
 .hero {
@@ -622,6 +638,18 @@ footer {
   color: #798673;
   font-size: 12px;
   line-height: 1.7;
+}
+
+[lang="ru"] h1 {
+  font-size: clamp(2.5rem, 4.4vw, 3.8rem);
+}
+
+[lang="ru"] .pill {
+  font-size: 7px;
+}
+
+[lang="ru"] .warn {
+  font-size: 6px;
 }
 
 a:focus-visible,

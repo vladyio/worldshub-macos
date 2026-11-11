@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WorldsHub для macOS — неофициальный клиент Minecraft</title>
+  <meta name="description" content="Бесплатный неофициальный клиент WorldsHub для macOS. Подключайтесь к мирам Minecraft по P2P и хостите их прямо с Mac. Без проброса портов и без Windows.">
+  <meta name="theme-color" content="#0d100c">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="canonical" href="https://vladyio.github.io/worldshub-macos/ru/">
+  <link rel="alternate" hreflang="en" href="https://vladyio.github.io/worldshub-macos/">
+  <link rel="alternate" hreflang="ru" href="https://vladyio.github.io/worldshub-macos/ru/">
+  <link rel="alternate" hreflang="x-default" href="https://vladyio.github.io/worldshub-macos/">
+  <script>
+    try {
+      if (new URLSearchParams(location.search).get('lang') === 'ru') {
+        localStorage.setItem('worldshub-lang', 'ru');
+      }
+    } catch (error) {}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-glow" aria-hidden="true"></div>
+
+  <header class="nav container">
+    <a class="brand" href="#top" aria-label="WorldsHub macOS — на главную">
+      <img src="../grass-block.svg" alt="" width="28" height="28">
+      <span class="brand-name">WorldsHub</span>
+      <span class="brand-tag">macOS</span>
+    </a>
+    <nav class="nav-links" aria-label="Основная навигация">
+      <a href="#features">Возможности</a>
+      <a href="#install">Установка</a>
+      <a href="https://github.com/vladyio/worldshub-macos" rel="noopener">GitHub</a>
+      <a class="lang" href="../?lang=en" hreflang="en" lang="en" aria-label="English version">EN</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero container">
+      <div class="hero-copy">
+        <div class="pill"><span class="pill-dot"></span> Неофициальный · фанатский · open source</div>
+        <h1>
+          Играйте в Minecraft<br>
+          <span class="grad">с друзьями.</span><br>
+          Прямо с Mac.
+        </h1>
+        <p class="lead">
+          Бесплатный неофициальный клиент WorldsHub для macOS. Подключайтесь к мирам
+          Minecraft по P2P и хостите их без проброса портов — Windows не нужен.
+        </p>
+        <div class="actions">
+          <a class="btn btn-download" href="https://github.com/vladyio/worldshub-macos/releases/latest/download/WorldsHub-macOS-arm64.zip">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 3a1 1 0 0 1 1 1v9.6l3.3-3.3a1 1 0 1 1 1.4 1.4l-5 5a1 1 0 0 1-1.4 0l-5-5a1 1 0 1 1 1.4-1.4l3.3 3.3V4a1 1 0 0 1 1-1Zm-7 15a1 1 0 0 1 1 1v1h12v-1a1 1 0 1 1 2 0v2a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1Z"/></svg>
+            <span>Скачать для macOS<small>Apple Silicon · <span data-release>последний релиз</span></small></span>
+          </a>
+          <a class="btn btn-ghost" href="https://github.com/vladyio/worldshub-macos" rel="noopener">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 .7a11.3 11.3 0 0 0-3.6 22c.6.1.8-.2.8-.6v-2c-3.3.7-4-1.4-4-1.4-.5-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.8 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 2.8 18.3 3 18.3 3c.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.5-5.5 5.8.4.4.8 1.1.8 2.2v3.2c0 .4.2.7.8.6A11.3 11.3 0 0 0 12 .7Z"/></svg>
+            <span>Исходный код</span>
+          </a>
+        </div>
+        <ul class="meta" aria-label="Требования">
+          <li>macOS 13+</li>
+          <li>Apple Silicon</li>
+          <li>Бесплатно и open source</li>
+        </ul>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <div class="orb"></div>
+        <img class="block" src="../grass-block.svg" alt="" width="240" height="240">
+        <div class="console">
+          <div class="console-bar">
+            <span class="dot dot-red"></span><span class="dot dot-gold"></span><span class="dot dot-green"></span>
+            <span class="console-title">WorldsHub</span>
+            <img src="../grass-block.svg" alt="" width="14" height="14">
+          </div>
+          <pre><span class="dim">$</span> подключение к миру...
+<span class="ok">✓</span> P2P-туннель установлен
+<span class="ok">✓</span> сервер Minecraft онлайн
+<span class="prompt">→</span> играть на <b>localhost:25565</b></pre>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="container section">
+      <p class="eyebrow">Что умеет</p>
+      <h2>Играть и хостить. Одно приложение.</h2>
+      <div class="features">
+        <article class="card">
+          <div class="card-icon icon-grass">
+            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M8 5.5v13l10-6.5-10-6.5Z"/></svg>
+          </div>
+          <h3>Подключение к мирам</h3>
+          <p>Выбирайте миры WorldsHub, нажимайте Connect и подключайте Minecraft к <code>localhost:25565</code>. Всё.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon icon-gold">
+            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M4 4h16v5H4V4Zm0 6h16v5H4v-5Zm0 6h16v4H4v-4Z"/></svg>
+          </div>
+          <h3>Хостинг миров</h3>
+          <p>Установите сервер Minecraft прямо из приложения, запустите его и нажмите Host. Поделитесь инвайт-кодом с друзьями.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon icon-diamond">
+            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="m13 2-8 12h6l-1 8 9-13h-6l0-7Z"/></svg>
+          </div>
+          <h3>Без проброса портов</h3>
+          <p>WebRTC сам обходит NAT. Разрешите доступ к локальной сети в macOS — и играйте.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="install" class="container section">
+      <p class="eyebrow">Начало</p>
+      <h2>Три шага до игры.</h2>
+      <ol class="steps">
+        <li>
+          <span class="step-num">1</span>
+          <div>
+            <h3>Скачайте и установите</h3>
+            <p>Скачайте последний релиз, распакуйте и перетащите <code>WorldsHub.app</code> в <code>/Applications</code>.</p>
+          </div>
+        </li>
+        <li>
+          <span class="step-num">2</span>
+          <div>
+            <h3>Войдите</h3>
+            <p>Откройте приложение и войдите в аккаунт WorldsHub. При первом запуске может понадобиться правый клик → «Открыть».</p>
+          </div>
+        </li>
+        <li>
+          <span class="step-num">3</span>
+          <div>
+            <h3>Играйте или хостите</h3>
+            <p>Подключитесь к миру или установите Java 17+ и сервер Minecraft, затем нажмите Host. Играйте на <code>localhost:25565</code>.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="container cta-wrap">
+      <div class="cta">
+        <div>
+          <p class="eyebrow">Готовы?</p>
+          <h2>Берите травяной блок. Зовите друзей.</h2>
+          <p class="cta-note">Нужен аккаунт WorldsHub и Minecraft Java Edition.</p>
+        </div>
+        <a class="btn btn-download" href="https://github.com/vladyio/worldshub-macos/releases/latest/download/WorldsHub-macOS-arm64.zip">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 3a1 1 0 0 1 1 1v9.6l3.3-3.3a1 1 0 1 1 1.4 1.4l-5 5a1 1 0 0 1-1.4 0l-5-5a1 1 0 1 1 1.4-1.4l3.3 3.3V4a1 1 0 0 1 1-1Zm-7 15a1 1 0 0 1 1 1v1h12v-1a1 1 0 1 1 2 0v2a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1Z"/></svg>
+          <span>Скачать для macOS<small>Apple Silicon · <span data-release>последний релиз</span></small></span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="../grass-block.svg" alt="" width="24" height="24">
+        <span>WorldsHub <b>macOS</b></span>
+      </div>
+      <nav class="footer-links" aria-label="Навигация в подвале">
+        <a href="https://github.com/vladyio/worldshub-macos" rel="noopener">GitHub</a>
+        <a href="https://github.com/vladyio/worldshub-macos/releases" rel="noopener">Релизы</a>
+        <a href="https://github.com/vladyio/worldshub-macos#readme" rel="noopener">README</a>
+        <a href="../?lang=en" hreflang="en" lang="en">English</a>
+      </nav>
+    </div>
+    <div class="disclaimer">
+      <span class="warn">НЕОФИЦИАЛЬНО</span>
+      <p>
+        Это неофициальный фанатский проект. Он не связан с WorldsHub, Mojang или Microsoft
+        и не одобрен ими. Minecraft — торговая марка Mojang Synergies AB.
+        Исходный код — общественное достояние.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    const versionEls = document.querySelectorAll('[data-release]');
+    fetch('https://api.github.com/repos/vladyio/worldshub-macos/releases/latest', {
+      headers: { Accept: 'application/vnd.github+json' }
+    })
+      .then((response) => (response.ok ? response.json() : null))
+      .then((release) => {
+        if (!release || !release.tag_name) return;
+        versionEls.forEach((element) => { element.textContent = release.tag_name; });
+      })
+      .catch(() => {});
+  </script>
+</body>
+</html>

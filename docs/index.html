@@ -7,6 +7,30 @@
   <meta name="description" content="A free, unofficial macOS client for WorldsHub. Join and host peer-to-peer Minecraft worlds from your Mac. No port forwarding, no Windows required.">
   <meta name="theme-color" content="#0d100c">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="canonical" href="https://vladyio.github.io/worldshub-macos/">
+  <link rel="alternate" hreflang="en" href="https://vladyio.github.io/worldshub-macos/">
+  <link rel="alternate" hreflang="ru" href="https://vladyio.github.io/worldshub-macos/ru/">
+  <link rel="alternate" hreflang="x-default" href="https://vladyio.github.io/worldshub-macos/">
+  <script>
+    (function () {
+      try {
+        var key = 'worldshub-lang';
+        var params = new URLSearchParams(window.location.search);
+        var forced = params.get('lang');
+        var saved = forced || localStorage.getItem(key);
+        if (!saved) {
+          var lang = (navigator.languages && navigator.languages[0]) || navigator.language || 'en';
+          saved = lang.toLowerCase().indexOf('ru') === 0 ? 'ru' : 'en';
+          localStorage.setItem(key, saved);
+        } else if (forced) {
+          localStorage.setItem(key, forced);
+        }
+        if (saved === 'ru' && !/\/ru(\/|$)/.test(window.location.pathname)) {
+          window.location.replace('ru/' + window.location.search + window.location.hash);
+        }
+      } catch (error) {}
+    })();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Press+Start+2P&display=swap" rel="stylesheet">
@@ -26,6 +50,7 @@
       <a href="#features">Features</a>
       <a href="#install">Install</a>
       <a href="https://github.com/vladyio/worldshub-macos" rel="noopener">GitHub</a>
+      <a class="lang" href="ru/?lang=ru" hreflang="ru" lang="ru" aria-label="Русская версия">RU</a>
     </nav>
   </header>
 
@@ -157,7 +182,7 @@
         <a href="https://github.com/vladyio/worldshub-macos" rel="noopener">GitHub</a>
         <a href="https://github.com/vladyio/worldshub-macos/releases" rel="noopener">Releases</a>
         <a href="https://github.com/vladyio/worldshub-macos#readme" rel="noopener">README</a>
-        <a href="https://github.com/vladyio/worldshub-macos/blob/main/README.ru.md" rel="noopener">Русский</a>
+        <a href="ru/" hreflang="ru" lang="ru">Русский</a>
       </nav>
     </div>
     <div class="disclaimer">
