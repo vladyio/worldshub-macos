@@ -13,7 +13,12 @@
   <link rel="alternate" hreflang="x-default" href="https://vladyio.github.io/worldshub-macos/">
   <script>
     try {
-      if (new URLSearchParams(location.search).get('lang') === 'ru') {
+      var params = new URLSearchParams(location.search);
+      var forced = params.get('lang');
+      if (forced === 'en') {
+        localStorage.setItem('worldshub-lang', 'en');
+        location.replace('../?lang=en');
+      } else if (forced === 'ru') {
         localStorage.setItem('worldshub-lang', 'ru');
       }
     } catch (error) {}
