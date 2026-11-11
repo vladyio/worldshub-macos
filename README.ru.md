@@ -5,6 +5,8 @@
 > [!NOTE]
 > Это полностью «вайб-кодинг» и неофициальная реализация WorldHub для macOS. Предоставляется как есть, сделана как proof-of-concept (а также чтобы помочь некоторым людям поиграть).
 
+[![Download 0.8.5](https://img.shields.io/badge/Download-0.8.5-blue?style=for-the-badge)](https://github.com/vladyio/worldshub-macos/releases/latest/download/WorldsHub-macOS-arm64.zip)
+
 Тонкая Electron-обёртка вокруг официального веб-клиента WorldsHub, у которой Windows-зависимая P2P-часть пересобрана для macOS. Позволяет **подключаться** к мирам Minecraft, которые хостят игроки с официальным Windows-клиентом. Создание миров не поддерживается.
 
 Только Apple Silicon (arm64).

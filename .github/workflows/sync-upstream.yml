@@ -85,6 +85,10 @@ jobs:
           npm version "${{ steps.check.outputs.version }}" \
             --no-git-tag-version --allow-same-version --force
 
+          sed -i '' -E \
+            "s|Download [0-9][0-9A-Za-z.-]*|Download ${{ steps.check.outputs.version }}|g; s|Download-[0-9][0-9A-Za-z.]*|Download-${{ steps.check.outputs.version }}|g" \
+            README.md README.ru.md
+
       - name: Install dependencies
         if: steps.check.outputs.changed == 'true'
         run: npm ci
@@ -111,7 +115,8 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add client.js config.js minecraft-datachannel-parser.js preload.js \
-            main-process/utils/turn-servers.js package.json package-lock.json
+            main-process/utils/turn-servers.js package.json package-lock.json \
+            README.md README.ru.md
           if git diff --cached --quiet; then
             echo "No source changes to commit"
           else
