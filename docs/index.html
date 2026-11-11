@@ -1,16 +1,142 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>WorldsHub for macOS — Unofficial Minecraft client</title>
-  <meta name="description" content="A free, unofficial macOS client for WorldsHub. Join and host peer-to-peer Minecraft worlds from your Mac. No port forwarding, no Windows required.">
+  <title>WorldsHub for macOS — Unofficial Minecraft Client</title>
+  <meta name="description" content="Free, unofficial WorldsHub client for macOS. Join and host Minecraft Java worlds on Apple Silicon with no port forwarding. Download for macOS.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="theme-color" content="#0d100c">
+  <meta name="color-scheme" content="dark">
+  <meta name="application-name" content="WorldsHub for macOS">
   <link rel="icon" href="grass-block-icon.svg" type="image/svg+xml">
   <link rel="canonical" href="https://vladyio.github.io/worldshub-macos/">
   <link rel="alternate" hreflang="en" href="https://vladyio.github.io/worldshub-macos/">
   <link rel="alternate" hreflang="ru" href="https://vladyio.github.io/worldshub-macos/ru/">
   <link rel="alternate" hreflang="x-default" href="https://vladyio.github.io/worldshub-macos/">
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="https://vladyio.github.io/worldshub-macos/sitemap.xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="WorldsHub for macOS">
+  <meta property="og:title" content="WorldsHub for macOS — Unofficial Minecraft Client">
+  <meta property="og:description" content="Free, unofficial WorldsHub client for macOS. Join and host Minecraft Java worlds on Apple Silicon with no port forwarding.">
+  <meta property="og:url" content="https://vladyio.github.io/worldshub-macos/">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="ru_RU">
+  <meta property="og:image" content="https://vladyio.github.io/worldshub-macos/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="WorldsHub for macOS — unofficial Minecraft client">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="WorldsHub for macOS — Unofficial Minecraft Client">
+  <meta name="twitter:description" content="Free, unofficial WorldsHub client for macOS. Join and host Minecraft Java worlds on Apple Silicon with no port forwarding.">
+  <meta name="twitter:image" content="https://vladyio.github.io/worldshub-macos/og-image.png">
+  <meta name="twitter:image:alt" content="WorldsHub for macOS — unofficial Minecraft client">
+  <script type="application/ld+json" id="app-schema">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://vladyio.github.io/worldshub-macos/#app",
+        "name": "WorldsHub for macOS",
+        "alternateName": "WorldsHub macOS (unofficial)",
+        "description": "Free, unofficial WorldsHub client for macOS. Join and host Minecraft Java worlds on Apple Silicon with no port forwarding.",
+        "applicationCategory": "GameApplication",
+        "applicationSubCategory": "Minecraft client",
+        "operatingSystem": "macOS 13+",
+        "processorRequirements": "Apple Silicon (arm64)",
+        "softwareVersion": "0.9.0",
+        "downloadUrl": "https://github.com/vladyio/worldshub-macos/releases/latest/download/WorldsHub-macOS-arm64.zip",
+        "installUrl": "https://github.com/vladyio/worldshub-macos/releases/latest",
+        "softwareHelp": "https://vladyio.github.io/worldshub-macos/#install",
+        "license": "https://github.com/vladyio/worldshub-macos/blob/main/LICENSE",
+        "isAccessibleForFree": true,
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock"
+        },
+        "creator": {
+          "@type": "Person",
+          "name": "vladyio",
+          "url": "https://github.com/vladyio"
+        },
+        "sameAs": [
+          "https://github.com/vladyio/worldshub-macos"
+        ],
+        "image": "https://vladyio.github.io/worldshub-macos/og-image.png",
+        "inLanguage": "en",
+        "disambiguatingDescription": "Unofficial, fan-made client; not affiliated with WorldsHub, Mojang, or Microsoft."
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://vladyio.github.io/worldshub-macos/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is this the official WorldsHub app?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. This is an unofficial, fan-made macOS client. It is not affiliated with or endorsed by WorldsHub, Mojang, or Microsoft."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I host worlds, not just join?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. You can join existing WorldsHub worlds and host your own Minecraft server from the app."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does it run on Intel Macs?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. The current build is for Apple Silicon (arm64) only."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do I need Java?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Java 17 or newer is required for hosting. If you do not have a compatible JDK, the app can download and install Temurin JDK 21 for you."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do I need port forwarding?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. The app uses WebRTC and TURN to establish peer-to-peer connections. Allow macOS local-network access when prompted."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is it free?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. The app is free and the source code is public domain. You still need a WorldsHub account and Minecraft Java Edition."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://vladyio.github.io/worldshub-macos/#webpage",
+        "url": "https://vladyio.github.io/worldshub-macos/",
+        "name": "WorldsHub for macOS — Unofficial Minecraft Client",
+        "inLanguage": "en",
+        "mainEntity": {
+          "@id": "https://vladyio.github.io/worldshub-macos/#app"
+        }
+      }
+    ]
+  }
+  </script>
   <script>
     (function () {
       try {
@@ -46,7 +172,7 @@
       .lang-switch .flag { width: 14px; height: 10px; }
     }
   </style>
-  <link rel="stylesheet" href="style.css?v=3">
+  <link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
   <div class="bg-grid" aria-hidden="true"></div>
@@ -61,8 +187,9 @@
     <nav class="nav-links" aria-label="Main navigation">
       <a href="#features">Features</a>
       <a href="#install">Install</a>
+      <a href="#faq">FAQ</a>
       <a href="https://github.com/vladyio/worldshub-macos" rel="noopener">GitHub</a>
-      <div class="lang-switch" role="group" aria-label="Language">
+      <div class="lang-switch">
         <a class="lang is-active" href="?lang=en" hreflang="en" lang="en" aria-current="true">
           <svg class="flag" width="16" height="11" viewBox="0 0 20 14" aria-hidden="true">
             <defs><clipPath id="ukFlag"><rect width="20" height="14" rx="1"/></clipPath></defs>
@@ -120,7 +247,261 @@
 
       <div class="hero-visual" aria-hidden="true">
         <div class="orb"></div>
-        <object class="block" data="grass-block.svg?v=2" type="image/svg+xml" aria-label="Glossy Minecraft grass block connected by glowing cables"></object>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 320" class="block" role="img" aria-label="Glossy grass block with two glowing cables on each side" focusable="false">
+          <defs>
+            <linearGradient id="topGrad" x1="0.2" y1="0" x2="0.65" y2="1">
+              <stop offset="0" stop-color="#c9ff8c"/>
+              <stop offset="0.45" stop-color="#84e348"/>
+              <stop offset="1" stop-color="#3f971c"/>
+            </linearGradient>
+            <linearGradient id="topSheen" x1="0" y1="0" x2="0.8" y2="1">
+              <stop offset="0" stop-color="#ffffff" stop-opacity="0.55"/>
+              <stop offset="0.55" stop-color="#ffffff" stop-opacity="0.08"/>
+              <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+            </linearGradient>
+            <linearGradient id="leftGrad" x1="0.1" y1="0" x2="0.9" y2="1">
+              <stop offset="0" stop-color="#c98a50"/>
+              <stop offset="0.55" stop-color="#976030"/>
+              <stop offset="1" stop-color="#5d3517"/>
+            </linearGradient>
+            <linearGradient id="rightGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#a26836"/>
+              <stop offset="0.55" stop-color="#724522"/>
+              <stop offset="1" stop-color="#43240f"/>
+            </linearGradient>
+            <linearGradient id="grassLeft" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#a6f56a"/>
+              <stop offset="0.45" stop-color="#6bca35"/>
+              <stop offset="1" stop-color="#3c8418"/>
+            </linearGradient>
+            <linearGradient id="grassRight" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#79d943"/>
+              <stop offset="0.5" stop-color="#4eaa25"/>
+              <stop offset="1" stop-color="#2f6b12"/>
+            </linearGradient>
+            <linearGradient id="leftShade" x1="0" y1="0.45" x2="0" y2="1">
+              <stop offset="0" stop-color="#000000" stop-opacity="0"/>
+              <stop offset="1" stop-color="#000000" stop-opacity="0.45"/>
+            </linearGradient>
+            <linearGradient id="rightShade" x1="0" y1="0.4" x2="0" y2="1">
+              <stop offset="0" stop-color="#000000" stop-opacity="0"/>
+              <stop offset="1" stop-color="#000000" stop-opacity="0.55"/>
+            </linearGradient>
+            <linearGradient id="outline" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#1e4b0b"/>
+              <stop offset="0.5" stop-color="#2d1a0b"/>
+              <stop offset="1" stop-color="#120a04"/>
+            </linearGradient>
+            <linearGradient id="metal" x1="0" y1="0" x2="0.8" y2="1">
+              <stop offset="0" stop-color="#f4f7f1"/>
+              <stop offset="0.35" stop-color="#a7b09f"/>
+              <stop offset="0.62" stop-color="#5b6653"/>
+              <stop offset="1" stop-color="#2b3528"/>
+            </linearGradient>
+            <linearGradient id="cableCasing" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#3a4435"/>
+              <stop offset="0.5" stop-color="#1c241a"/>
+              <stop offset="1" stop-color="#0a0f09"/>
+            </linearGradient>
+            <radialGradient id="cyanGlow">
+              <stop offset="0" stop-color="#d8fff9" stop-opacity="0.95"/>
+              <stop offset="0.35" stop-color="#4aedd9" stop-opacity="0.5"/>
+              <stop offset="1" stop-color="#4aedd9" stop-opacity="0"/>
+            </radialGradient>
+            <radialGradient id="goldGlow">
+              <stop offset="0" stop-color="#fff5c4" stop-opacity="0.95"/>
+              <stop offset="0.35" stop-color="#f5c542" stop-opacity="0.5"/>
+              <stop offset="1" stop-color="#f5c542" stop-opacity="0"/>
+            </radialGradient>
+            <filter id="softShadow" x="-40%" y="-40%" width="180%" height="180%">
+              <feGaussianBlur stdDeviation="9"/>
+            </filter>
+            <filter id="blur6" x="-80%" y="-80%" width="260%" height="260%">
+              <feGaussianBlur stdDeviation="6"/>
+            </filter>
+            <clipPath id="leftFace">
+              <path d="M48 94 L180 160 L180 292 L48 226 Z"/>
+            </clipPath>
+            <clipPath id="rightFace">
+              <path d="M312 94 L180 160 L180 292 L312 226 Z"/>
+            </clipPath>
+          </defs>
+
+          <!-- ground shadow -->
+          <ellipse cx="180" cy="296" rx="118" ry="17" fill="#031006" opacity="0.55" filter="url(#softShadow)"/>
+
+          <!-- cables: two per side, tucked behind the block -->
+          <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <!-- left cyan cable -->
+            <path d="M70 201 C42 212 24 234 24 254 C24 272 14 284 18 298" stroke="#070c06" stroke-width="15"/>
+            <path d="M70 201 C42 212 24 234 24 254 C24 272 14 284 18 298" stroke="url(#cableCasing)" stroke-width="10.5"/>
+            <path d="M70 201 C42 212 24 234 24 254 C24 272 14 284 18 298" stroke="#4aedd9" stroke-width="3.4" opacity="0.9"/>
+            <path d="M70 199.5 C42 210.5 24 232.5 24 252.5 C24 270.5 14 282.5 18 296.5" stroke="#eaffff" stroke-width="1" opacity="0.3"/>
+            <path d="M70 201 C42 212 24 234 24 254 C24 272 14 284 18 298" stroke="#d6fff9" stroke-width="2" stroke-dasharray="3 17">
+              <animate attributeName="stroke-dashoffset" from="0" to="-40" dur="1.7s" repeatCount="indefinite"/>
+            </path>
+
+            <!-- left green cable -->
+            <path d="M85 217 C58 229 45 249 51 268 C56 283 45 294 49 306" stroke="#070c06" stroke-width="14"/>
+            <path d="M85 217 C58 229 45 249 51 268 C56 283 45 294 49 306" stroke="url(#cableCasing)" stroke-width="9.5"/>
+            <path d="M85 217 C58 229 45 249 51 268 C56 283 45 294 49 306" stroke="#8ad94f" stroke-width="3.2" opacity="0.9"/>
+            <path d="M85 215.5 C58 227.5 45 247.5 51 266.5 C56 281.5 45 292.5 49 304.5" stroke="#f2ffdf" stroke-width="1" opacity="0.28"/>
+            <path d="M85 217 C58 229 45 249 51 268 C56 283 45 294 49 306" stroke="#dcffb8" stroke-width="1.8" stroke-dasharray="3 19">
+              <animate attributeName="stroke-dashoffset" from="0" to="-44" dur="1.9s" repeatCount="indefinite"/>
+            </path>
+
+            <!-- right gold cable -->
+            <path d="M290 201 C318 212 336 234 336 254 C336 272 346 284 342 298" stroke="#070c06" stroke-width="15"/>
+            <path d="M290 201 C318 212 336 234 336 254 C336 272 346 284 342 298" stroke="url(#cableCasing)" stroke-width="10.5"/>
+            <path d="M290 201 C318 212 336 234 336 254 C336 272 346 284 342 298" stroke="#f5c542" stroke-width="3.4" opacity="0.9"/>
+            <path d="M290 199.5 C318 210.5 336 232.5 336 252.5 C336 270.5 346 282.5 342 296.5" stroke="#fffbe8" stroke-width="1" opacity="0.3"/>
+            <path d="M290 201 C318 212 336 234 336 254 C336 272 346 284 342 298" stroke="#fff5c4" stroke-width="2" stroke-dasharray="3 17">
+              <animate attributeName="stroke-dashoffset" from="0" to="-40" dur="1.6s" repeatCount="indefinite"/>
+            </path>
+
+            <!-- right orange cable -->
+            <path d="M275 217 C302 229 315 249 309 268 C304 283 315 294 311 306" stroke="#070c06" stroke-width="14"/>
+            <path d="M275 217 C302 229 315 249 309 268 C304 283 315 294 311 306" stroke="url(#cableCasing)" stroke-width="9.5"/>
+            <path d="M275 217 C302 229 315 249 309 268 C304 283 315 294 311 306" stroke="#ff9b3d" stroke-width="3.2" opacity="0.9"/>
+            <path d="M275 215.5 C302 227.5 315 247.5 309 266.5 C304 281.5 315 292.5 311 304.5" stroke="#fff0d6" stroke-width="1" opacity="0.28"/>
+            <path d="M275 217 C302 229 315 249 309 268 C304 283 315 294 311 306" stroke="#ffd9a8" stroke-width="1.8" stroke-dasharray="3 19">
+              <animate attributeName="stroke-dashoffset" from="0" to="-44" dur="2.1s" repeatCount="indefinite"/>
+            </path>
+          </g>
+
+          <!-- outer cable caps -->
+          <g>
+            <g transform="translate(18 298) rotate(78)">
+              <rect x="-7" y="-9" width="14" height="18" rx="6" fill="url(#metal)" stroke="#11180f" stroke-width="1.2"/>
+              <rect x="-3" y="-5" width="6" height="4" rx="2" fill="#4aedd9"/>
+            </g>
+            <g transform="translate(49 306) rotate(62)">
+              <rect x="-6.5" y="-8.5" width="13" height="17" rx="6" fill="url(#metal)" stroke="#11180f" stroke-width="1.2"/>
+              <rect x="-3" y="-5" width="6" height="4" rx="2" fill="#8ad94f"/>
+            </g>
+            <g transform="translate(342 298) rotate(-78)">
+              <rect x="-7" y="-9" width="14" height="18" rx="6" fill="url(#metal)" stroke="#11180f" stroke-width="1.2"/>
+              <rect x="-3" y="-5" width="6" height="4" rx="2" fill="#f5c542"/>
+            </g>
+            <g transform="translate(311 306) rotate(-62)">
+              <rect x="-6.5" y="-8.5" width="13" height="17" rx="6" fill="url(#metal)" stroke="#11180f" stroke-width="1.2"/>
+              <rect x="-3" y="-5" width="6" height="4" rx="2" fill="#ff9b3d"/>
+            </g>
+          </g>
+
+          <!-- glossy cube -->
+          <g>
+            <!-- top face -->
+            <path d="M180 28 L312 94 L180 160 L48 94 Z" fill="url(#topGrad)" stroke="#2f6b12" stroke-width="2.5" stroke-linejoin="round"/>
+            <!-- top gloss -->
+            <path d="M180 36 L294 92 L180 148 L66 92 Z" fill="url(#topSheen)" opacity="0.62"/>
+            <ellipse cx="143" cy="67" rx="38" ry="12" transform="rotate(-25 143 67)" fill="#ffffff" opacity="0.22" filter="url(#blur6)"/>
+            <path d="M60 92 L180 34 L300 92" fill="none" stroke="#e6ffc9" stroke-width="2.4" opacity="0.55" stroke-linecap="round"/>
+
+            <!-- left face -->
+            <path d="M48 94 L180 160 L180 292 L48 226 Z" fill="url(#leftGrad)" stroke="#5a3518" stroke-width="2" stroke-linejoin="round"/>
+            <g clip-path="url(#leftFace)">
+              <rect x="40" y="88" width="148" height="212" fill="url(#leftShade)" opacity="0.75"/>
+              <ellipse cx="78" cy="186" rx="4" ry="2.5" fill="#4b2a10" opacity="0.55"/>
+              <ellipse cx="104" cy="205" rx="5" ry="3" fill="#d39a63" opacity="0.24"/>
+              <ellipse cx="132" cy="196" rx="3" ry="2" fill="#4b2a10" opacity="0.45"/>
+              <ellipse cx="92" cy="232" rx="6" ry="3.5" fill="#4b2a10" opacity="0.45"/>
+              <ellipse cx="124" cy="248" rx="4" ry="2.5" fill="#d39a63" opacity="0.2"/>
+              <ellipse cx="68" cy="256" rx="4" ry="2" fill="#4b2a10" opacity="0.5"/>
+              <ellipse cx="148" cy="268" rx="5" ry="3" fill="#4b2a10" opacity="0.34"/>
+              <ellipse cx="108" cy="276" rx="4" ry="2.5" fill="#d39a63" opacity="0.18"/>
+            </g>
+            <!-- left grass lip -->
+            <path d="M48 94 L180 160 L180 175 C156 166 132 170 108 160 C84 150 66 156 48 144 Z" fill="url(#grassLeft)"/>
+            <path d="M48 94 L180 160" fill="none" stroke="#dcffb8" stroke-width="2" opacity="0.5" stroke-linecap="round"/>
+
+            <!-- right face -->
+            <path d="M312 94 L180 160 L180 292 L312 226 Z" fill="url(#rightGrad)" stroke="#3b210d" stroke-width="2" stroke-linejoin="round"/>
+            <g clip-path="url(#rightFace)">
+              <rect x="176" y="88" width="144" height="212" fill="url(#rightShade)" opacity="0.8"/>
+              <ellipse cx="222" cy="192" rx="4" ry="2.5" fill="#2f1808" opacity="0.5"/>
+              <ellipse cx="250" cy="206" rx="5" ry="3" fill="#c98a50" opacity="0.18"/>
+              <ellipse cx="276" cy="196" rx="3" ry="2" fill="#2f1808" opacity="0.45"/>
+              <ellipse cx="236" cy="238" rx="6" ry="3.5" fill="#2f1808" opacity="0.45"/>
+              <ellipse cx="268" cy="252" rx="4" ry="2.5" fill="#c98a50" opacity="0.15"/>
+              <ellipse cx="206" cy="266" rx="4" ry="2" fill="#2f1808" opacity="0.5"/>
+              <ellipse cx="286" cy="268" rx="5" ry="3" fill="#2f1808" opacity="0.3"/>
+            </g>
+            <!-- right grass lip -->
+            <path d="M312 94 L180 160 L180 175 C204 166 228 170 252 160 C276 150 294 156 312 144 Z" fill="url(#grassRight)"/>
+            <path d="M312 94 L180 160" fill="none" stroke="#b9f28a" stroke-width="2" opacity="0.35" stroke-linecap="round"/>
+
+            <!-- edge highlights -->
+            <path d="M48 94 L180 28 L312 94" fill="none" stroke="#e6ffc9" stroke-width="2.2" opacity="0.45" stroke-linecap="round"/>
+            <path d="M48 96 L48 226" fill="none" stroke="#f1c690" stroke-width="1.6" opacity="0.28" stroke-linecap="round"/>
+            <path d="M312 96 L312 226" fill="none" stroke="#ffd9a8" stroke-width="1.4" opacity="0.18" stroke-linecap="round"/>
+            <path d="M180 160 L180 292" fill="none" stroke="#2b1508" stroke-width="1.6" opacity="0.35"/>
+            <path d="M48 94 L180 160 L312 94" fill="none" stroke="#2f6b12" stroke-width="1.5" opacity="0.5"/>
+            <path d="M180 28 L312 94 L312 226 L180 292 L48 226 L48 94 Z" fill="none" stroke="url(#outline)" stroke-width="2.2" stroke-linejoin="round" opacity="0.75"/>
+          </g>
+
+          <!-- metal ports on the block -->
+          <g>
+            <g transform="translate(70 201) rotate(-27)">
+              <rect x="-11" y="-7.5" width="22" height="15" rx="5" fill="url(#metal)" stroke="#10180e" stroke-width="1.4"/>
+              <rect x="-6.5" y="-4" width="13" height="8" rx="3" fill="#08110b"/>
+              <circle r="3" fill="#4aedd9"/>
+            </g>
+            <g transform="translate(85 217) rotate(-27)">
+              <rect x="-10" y="-6.5" width="20" height="13" rx="4.5" fill="url(#metal)" stroke="#10180e" stroke-width="1.3"/>
+              <rect x="-6" y="-3.5" width="12" height="7" rx="2.5" fill="#08110b"/>
+              <circle r="2.6" fill="#8ad94f"/>
+            </g>
+            <g transform="translate(290 201) rotate(27)">
+              <rect x="-11" y="-7.5" width="22" height="15" rx="5" fill="url(#metal)" stroke="#10180e" stroke-width="1.4"/>
+              <rect x="-6.5" y="-4" width="13" height="8" rx="3" fill="#08110b"/>
+              <circle r="3" fill="#f5c542"/>
+            </g>
+            <g transform="translate(275 217) rotate(27)">
+              <rect x="-10" y="-6.5" width="20" height="13" rx="4.5" fill="url(#metal)" stroke="#10180e" stroke-width="1.3"/>
+              <rect x="-6" y="-3.5" width="12" height="7" rx="2.5" fill="#08110b"/>
+              <circle r="2.6" fill="#ff9b3d"/>
+            </g>
+          </g>
+
+          <!-- animated sparks at the ports -->
+          <g>
+            <g transform="translate(70 201)">
+              <circle r="17" fill="url(#cyanGlow)">
+                <animate attributeName="opacity" values="0.25;0.95;0.3" dur="1.8s" repeatCount="indefinite"/>
+              </circle>
+              <g>
+                <animateTransform attributeName="transform" type="scale" values="0.55;1.18;0.65" dur="1.8s" repeatCount="indefinite"/>
+                <path d="M0 -17 L3.5 -3.5 L17 0 L3.5 3.5 L0 17 L-3.5 3.5 L-17 0 L-3.5 -3.5 Z" fill="#eaffff"/>
+                <path d="M-12 -11 L-2 -2 L-6 2 L10 13" fill="none" stroke="#4aedd9" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="-12" cy="8" r="1.6" fill="#eaffff"/>
+                <circle cx="11" cy="-8" r="1.2" fill="#4aedd9"/>
+              </g>
+            </g>
+            <g transform="translate(290 201)">
+              <circle r="17" fill="url(#goldGlow)">
+                <animate attributeName="opacity" values="0.25;0.95;0.3" dur="1.8s" begin="0.7s" repeatCount="indefinite"/>
+              </circle>
+              <g>
+                <animateTransform attributeName="transform" type="scale" values="0.55;1.18;0.65" dur="1.8s" begin="0.7s" repeatCount="indefinite"/>
+                <path d="M0 -17 L3.5 -3.5 L17 0 L3.5 3.5 L0 17 L-3.5 3.5 L-17 0 L-3.5 -3.5 Z" fill="#fffbe8"/>
+                <path d="M-12 -11 L-2 -2 L-6 2 L10 13" fill="none" stroke="#f5c542" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="-12" cy="8" r="1.6" fill="#fffbe8"/>
+                <circle cx="11" cy="-8" r="1.2" fill="#f5c542"/>
+              </g>
+            </g>
+          </g>
+
+          <!-- small arcs between the two cables on each side -->
+          <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M72 203 L78 210 L83 205 L86 216" stroke="#bffff7" stroke-width="1.5" opacity="0.9">
+              <animate attributeName="opacity" values="0.15;0.95;0.2;0.8;0.15" dur="2.2s" repeatCount="indefinite"/>
+            </path>
+            <path d="M288 203 L282 210 L277 205 L274 216" stroke="#fff0c2" stroke-width="1.5" opacity="0.9">
+              <animate attributeName="opacity" values="0.15;0.95;0.2;0.8;0.15" dur="2.4s" begin="0.6s" repeatCount="indefinite"/>
+            </path>
+          </g>
+        </svg>
         <div class="console">
           <div class="console-bar">
             <span class="dot dot-red"></span><span class="dot dot-gold"></span><span class="dot dot-green"></span>
@@ -191,6 +572,37 @@
       </ol>
     </section>
 
+    <section id="faq" class="container section" aria-labelledby="faq-title">
+      <p class="eyebrow">FAQ</p>
+      <h2 id="faq-title">Questions, answered.</h2>
+      <div class="faq-grid">
+        <article class="faq-item">
+          <h3>Is this the official WorldsHub app?</h3>
+          <p>No. This is an unofficial, fan-made macOS client. It is not affiliated with or endorsed by WorldsHub, Mojang, or Microsoft.</p>
+        </article>
+        <article class="faq-item">
+          <h3>Can I host worlds, not just join?</h3>
+          <p>Yes. You can join existing WorldsHub worlds and host your own Minecraft server from the app.</p>
+        </article>
+        <article class="faq-item">
+          <h3>Does it run on Intel Macs?</h3>
+          <p>No. The current build is for Apple Silicon (arm64) only.</p>
+        </article>
+        <article class="faq-item">
+          <h3>Do I need Java?</h3>
+          <p>Java 17 or newer is required for hosting. If you do not have a compatible JDK, the app can download and install Temurin JDK 21 for you.</p>
+        </article>
+        <article class="faq-item">
+          <h3>Do I need port forwarding?</h3>
+          <p>No. The app uses WebRTC and TURN to establish peer-to-peer connections. Allow macOS local-network access when prompted.</p>
+        </article>
+        <article class="faq-item">
+          <h3>Is it free?</h3>
+          <p>Yes. The app is free and the source code is public domain. You still need a WorldsHub account and Minecraft Java Edition.</p>
+        </article>
+      </div>
+    </section>
+
     <section class="container cta-wrap">
       <div class="cta">
         <div>
@@ -213,6 +625,7 @@
         <span>WorldsHub <b>macOS</b></span>
       </div>
       <nav class="footer-links" aria-label="Footer navigation">
+        <a href="#faq">FAQ</a>
         <a href="https://github.com/vladyio/worldshub-macos" rel="noopener">GitHub</a>
         <a href="https://github.com/vladyio/worldshub-macos/releases" rel="noopener">Releases</a>
         <a href="https://github.com/vladyio/worldshub-macos#readme" rel="noopener">README</a>
@@ -230,8 +643,9 @@
   </footer>
 
   <script>
-    // Keep the visible version in sync with the latest GitHub release.
+    // Keep the visible version and schema in sync with the latest GitHub release.
     const versionEls = document.querySelectorAll('[data-release]');
+    const schemaEl = document.getElementById('app-schema');
     fetch('https://api.github.com/repos/vladyio/worldshub-macos/releases/latest', {
       headers: { Accept: 'application/vnd.github+json' }
     })
@@ -239,6 +653,16 @@
       .then((release) => {
         if (!release || !release.tag_name) return;
         versionEls.forEach((element) => { element.textContent = release.tag_name; });
+        if (schemaEl) {
+          try {
+            const data = JSON.parse(schemaEl.textContent);
+            const app = (data['@graph'] || []).find((node) => node['@type'] === 'SoftwareApplication');
+            if (app) {
+              app.softwareVersion = release.tag_name.replace(/^v/, '');
+              schemaEl.textContent = JSON.stringify(data);
+            }
+          } catch (error) {}
+        }
       })
       .catch(() => {});
   </script>

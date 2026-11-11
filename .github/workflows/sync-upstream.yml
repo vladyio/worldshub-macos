@@ -103,6 +103,11 @@ jobs:
             "s|Download [0-9][0-9A-Za-z.-]*|Download $app_version|g; s|Download-[0-9][0-9A-Za-z.]*|Download-$app_version|g" \
             README.md README.ru.md
 
+          sed -i '' -E \
+            "s|\"softwareVersion\": \"[0-9]+\.[0-9]+\.[0-9]+\"|\"softwareVersion\": \"$app_version\"|g" \
+            docs/index.html docs/ru/index.html
+          sed -i '' -E "s|<lastmod>[0-9-]+</lastmod>|<lastmod>$(date -u +%F)</lastmod>|g" docs/sitemap.xml
+
       - name: Set up Java 17
         if: steps.check.outputs.changed == 'true'
         uses: actions/setup-java@v4
@@ -138,7 +143,7 @@ jobs:
           git add client.js config.js host.js minecraft-datachannel-parser.js \
             minecraft-server-manager.js preload.js \
             main-process/utils/turn-servers.js package.json package-lock.json \
-            README.md README.ru.md
+            README.md README.ru.md docs/index.html docs/ru/index.html docs/sitemap.xml
           if git diff --cached --quiet; then
             echo "No source changes to commit"
           else
